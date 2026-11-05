@@ -16,7 +16,7 @@
         "VCPKG_DOWNLOADS": "${sourceDir}/out/cache/vcpkg-downloads",
         "VCPKG_DEFAULT_BINARY_CACHE": "${sourceDir}/out/cache/vcpkg-binaries",
         "X_VCPKG_REGISTRIES_CACHE": "${sourceDir}/out/cache/vcpkg-registries",
-        "VCPKG_FORCE_SYSTEM_BINARIES": "1",
+        "VCPKG_DISABLE_COMPILER_TRACKING": "1",
         "GIT_CONFIG_COUNT": "1",
         "GIT_CONFIG_KEY_0": "http.sslBackend",
         "GIT_CONFIG_VALUE_0": "openssl"
