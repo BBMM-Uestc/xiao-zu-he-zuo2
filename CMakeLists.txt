@@ -1,5 +1,13 @@
 cmake_minimum_required(VERSION 3.24)
 
+# Keep vcpkg's mutable cache inside the ignored build output. These directories
+# must exist when the vcpkg toolchain runs during project().
+file(MAKE_DIRECTORY
+    "${CMAKE_CURRENT_LIST_DIR}/out/cache/vcpkg-downloads"
+    "${CMAKE_CURRENT_LIST_DIR}/out/cache/vcpkg-binaries"
+    "${CMAKE_CURRENT_LIST_DIR}/out/cache/vcpkg-registries"
+)
+
 project(LogicSim VERSION 0.1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)

@@ -15,27 +15,38 @@ LogicSim 是一个基于 C++20、wxWidgets 和 Visual Studio 2022 的数字逻�
 
 - Visual Studio 2022，安装“使用 C++ 的桌面开发”；
 - CMake 3.24 或更高版本；
-- vcpkg，并设置环境变量 `VCPKG_ROOT`；
+- vcpkg；项目会优先读取 `VCPKG_ROOT`，也会自动查找 VS2022 自带版本；
 - 网络连接，用于首次安装 wxWidgets 和 nlohmann-json。
+
+Visual Studio 2022 通常已经自带 vcpkg。项目会自动检查下面的路径：
+
+```text
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg\vcpkg.exe
+```
+
+如果使用其他位置，可以设置 `VCPKG_ROOT`：
+
+```powershell
+[Environment]::SetEnvironmentVariable(
+    "VCPKG_ROOT",
+    "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg",
+    "User"
+)
+```
+
+设置后重新启动 Visual Studio。不要把不同版本的 vcpkg 同时混入同一个构建目录。
 
 ## 在 Visual Studio 2022 中打开
 
-1. 设置 `VCPKG_ROOT`，例如：
+1. 在 VS2022 中选择“文件” -> “打开” -> “文件夹”。
+2. 选择本项目根目录。
+3. 选择 CMake preset `vs2022-x64-debug`。
+4. 将 `LogicSim` 设为启动目标并运行。
 
-   ```powershell
-   [Environment]::SetEnvironmentVariable(
-       "VCPKG_ROOT",
-       "C:\dev\vcpkg",
-       "User"
-   )
-   ```
-
-   设置后重新启动 Visual Studio。
-
-2. 在 VS2022 中选择“文件” -> “打开” -> “文件夹”。
-3. 选择本项目根目录。
-4. 选择 CMake preset `vs2022-x64-debug`。
-5. 将 `LogicSim` 设为启动目标并运行。
+首次配置会从 vcpkg 注册表获取依赖。如果出现
+`Failed to connect to github.com:443`，说明 GitHub 暂时不可访问；应先恢复网络、
+学校 VPN 或本机代理，再重新配置。不要在克隆失败后执行
+`bootstrap-vcpkg.bat`，因为该文件此时尚不存在。
 
 也可以从 Developer PowerShell 构建：
 

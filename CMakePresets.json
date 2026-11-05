@@ -12,8 +12,17 @@
       "generator": "Visual Studio 17 2022",
       "architecture": "x64",
       "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "environment": {
+        "VCPKG_DOWNLOADS": "${sourceDir}/out/cache/vcpkg-downloads",
+        "VCPKG_DEFAULT_BINARY_CACHE": "${sourceDir}/out/cache/vcpkg-binaries",
+        "X_VCPKG_REGISTRIES_CACHE": "${sourceDir}/out/cache/vcpkg-registries",
+        "VCPKG_FORCE_SYSTEM_BINARIES": "1",
+        "GIT_CONFIG_COUNT": "1",
+        "GIT_CONFIG_KEY_0": "http.sslBackend",
+        "GIT_CONFIG_VALUE_0": "openssl"
+      },
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/vcpkg-toolchain.cmake",
         "VCPKG_TARGET_TRIPLET": "x64-windows",
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
       }
