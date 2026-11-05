@@ -1,0 +1,7 @@
+# 全组 Windows + VS：索引内存 LF，检出为 CRLF，避免整文件 diff
+* text=auto eol=crlf
+
+*.md   text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+*.sh   text eol=lf
